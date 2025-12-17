@@ -39,9 +39,31 @@ function playRound(humanChoice, computerChoice) {
     }
 
     console.log("Human " + humanScore + " | Computer " + computerScore);
+    alert(humanChoice + " VS " + computerChoice + "\nHuman " + humanScore + " | Computer " + computerScore);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    humanScore = computerScore = 0;
+    alert("Welcome to Rock Paper Scissors!\nYou're playing against the computer.")
+    
+    for (let i = 0; i < 5; ++i) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
 
-playRound(humanSelection, computerSelection);
+    let message = "Human " + humanScore + " | Computer " + computerScore + "\n";
+    if (humanScore === computerScore) {
+        message += "It's a DRAW! GGWP!"
+    }
+    else if (humanScore > computerScore) {
+        message += "You WIN!!! AI CAN NEVER REPLACE HUMANITY!!!";
+    }
+    else {
+        message += "You LOST! Skill issue?";
+    }
+
+    alert(message);
+}
+
+playGame();
