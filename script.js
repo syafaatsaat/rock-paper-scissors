@@ -46,11 +46,11 @@ function playGame() {
     humanScore = computerScore = 0;
     alert("Welcome to Rock Paper Scissors!\nYou're playing against the computer.")
     
-    for (let i = 0; i < 5; ++i) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+    //for (let i = 0; i < 5; ++i) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    //}
 
     let message = "Human " + humanScore + " | Computer " + computerScore + "\n";
     if (humanScore === computerScore) {
@@ -66,4 +66,21 @@ function playGame() {
     alert(message);
 }
 
-playGame();
+//playGame();
+
+let choiceButtons = document.querySelector('#choice-buttons');
+choiceButtons.addEventListener('click', (event) => {
+    let target = event.target;
+
+    switch(target.id) {
+        case 'rock':
+            console.log("ROCK!");
+            break;
+        case 'paper':
+            console.log("PAPER!");
+            break;
+        case 'scissors':
+            console.log("SCISSORS!");
+            break;
+    }
+});
