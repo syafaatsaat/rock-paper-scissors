@@ -62,30 +62,30 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
 
     if (humanChoice == "rock" && computerChoice == "scissors") {
         humanScore++;
-        roundState = "HUMAN WINS";
+        roundState = "HUMAN (H) WINS";
     }
     else if (humanChoice == "scissors" && computerChoice == "paper") {
         humanScore++;
-        roundState = "HUMAN WINS";
+        roundState = "HUMAN (H) WINS";
     }
     else if (humanChoice == "paper" && computerChoice == "rock") {
         humanScore++;
-        roundState = "HUMAN WINS";
+        roundState = "HUMAN (H) WINS";
     }
     if (computerChoice == "rock" && humanChoice == "scissors") {
         computerScore++;
-        roundState = "COMPUTER WINS";
+        roundState = "COMPUTER (C) WINS";
     }
     else if (computerChoice == "scissors" && humanChoice == "paper") {
         computerScore++;
-        roundState = "COMPUTER WINS";
+        roundState = "COMPUTER (C) WINS";
     }
     else if (computerChoice == "paper" && humanChoice == "rock") {
         computerScore++;
-        roundState = "COMPUTER WINS";
+        roundState = "COMPUTER (C) WINS";
     }
 
-    let message = "Human " + humanScore + " | Computer " + computerScore;
+    let message = "H " + humanScore + " | " + computerScore + " C";
 
     scoreboardText.textContent = message;
     showComputerChoice(computerChoice);
@@ -109,8 +109,8 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
 function startGame() {
     humanScore = computerScore = 0;
     roundsPlayed = 1;
-    scoreboardText.textContent = "Human 0 | Computer 0";
-    startButton.textContent = "RESTART";
+    scoreboardText.textContent = "H 0 | 0 C";
+    startButton.textContent = "PLAY AGAIN";
     messageText.textContent = "ROUND " + roundsPlayed;
     hideGameElements(false);
 }
