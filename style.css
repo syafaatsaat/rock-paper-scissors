@@ -76,8 +76,17 @@ body > * {
     font-size: 84px;
 }
 
+#computer-box {
+    color: red;
+    border: 5px solid red;
+}
+
 #message {
     font-size: 60px;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 button:disabled {
@@ -86,4 +95,10 @@ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     pointer-events: none;
+}
+
+.green-box {
+    color: green;
+    border: 5px solid green;
+    opacity: 1;
 }

@@ -40,6 +40,20 @@ function showEndResults() {
     hideGameElements(true);
 }
 
+function showComputerChoice(choice) {
+    switch (choice) {
+        case 'rock':
+            computerBox.textContent = "✊";
+            break;
+        case 'paper':
+            computerBox.textContent = "✋";
+            break;
+        case 'scissors':
+            computerBox.textContent = "✌";
+            break;
+    }
+}
+
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
     // rock beats scissors
     // scissors beats paper
@@ -74,7 +88,7 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
     let message = "Human " + humanScore + " | Computer " + computerScore;
 
     scoreboardText.textContent = message;
-
+    showComputerChoice(computerChoice);
     disableChoiceButtons(true);
 
     messageText.textContent = "ROUND " + roundsPlayed + " - " + roundState;
@@ -99,6 +113,10 @@ function startGame() {
     hideGameElements(false);
 }
 
+function changeButtonToGreen(element) {
+    element.classList.add("green-box");
+}
+
 let choiceButtons = document.querySelector('#choice-buttons');
 choiceButtons.addEventListener('click', (event) => {
     let target = event.target;
@@ -107,14 +125,17 @@ choiceButtons.addEventListener('click', (event) => {
         case 'rock':
             //console.log("ROCK!");
             playRound(CHOICES[0]);
+            changeButtonToGreen(target.element);
             break;
         case 'paper':
             //console.log("PAPER!");
             playRound(CHOICES[1]);
+            changeButtonToGreen(target.element);
             break;
         case 'scissors':
             //console.log("SCISSORS!");
             playRound(CHOICES[2]);
+            changeButtonToGreen(target.element);
             break;
     }
 });
