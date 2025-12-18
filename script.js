@@ -14,7 +14,7 @@ function getHumanChoice() {
     return CHOICES[humanChoice - 1];
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice, computerChoice = getComputerChoice()) {
     // rock beats scissors
     // scissors beats paper
     // paper beats rock
@@ -38,8 +38,10 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
     }
 
-    console.log("Human " + humanScore + " | Computer " + computerScore);
-    alert(humanChoice + " VS " + computerChoice + "\nHuman " + humanScore + " | Computer " + computerScore);
+    let message = "Human " + humanScore + " | Computer " + computerScore;
+
+    const scoreBoard = document.querySelector("#scoreboard");
+    scoreBoard.textContent = message;
 }
 
 function playGame() {
@@ -75,15 +77,15 @@ choiceButtons.addEventListener('click', (event) => {
     switch(target.id) {
         case 'rock':
             //console.log("ROCK!");
-            playRound(CHOICES[0], getComputerChoice());
+            playRound(CHOICES[0]);
             break;
         case 'paper':
             //console.log("PAPER!");
-            playRound(CHOICES[1], getComputerChoice());
+            playRound(CHOICES[1]);
             break;
         case 'scissors':
             //console.log("SCISSORS!");
-            playRound(CHOICES[2], getComputerChoice());
+            playRound(CHOICES[2]);
             break;
     }
 });
