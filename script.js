@@ -4,6 +4,14 @@ let humanScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
 
+const startButton = document.querySelector("#start");
+startButton.addEventListener('click', (event) => {
+    startGame();
+});
+
+const scoreboardText = document.querySelector("#scoreboard");
+const messageText = document.querySelector("#message");
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     //console.log(randomNumber);
@@ -27,12 +35,9 @@ function showEndResults() {
         message = "You LOST! Skill issue?";
     }
 
-    const resultText = document.createElement("p");
-    resultText.setAttribute('id', 'result-text');
-    resultText.textContent = message;
-
-    const resultDiv = document.querySelector("#results");
-    resultDiv.appendChild(resultText);
+    messageText.textContent = message;
+    choiceButtons.hidden = true;
+    startButton.hidden = false;
 }
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
@@ -61,37 +66,22 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
 
     let message = "Human " + humanScore + " | Computer " + computerScore;
 
-    const scoreBoard = document.querySelector("#scoreboard");
-    scoreBoard.textContent = message;
-
+    scoreboardText.textContent = message;
+    
     if (++roundsPlayed == 5) {
         showEndResults();
-        //showRestartButton();
     }
 }
 
-function playGame() {
+function startGame() {
     humanScore = computerScore = roundsPlayed = 0;
-    alert("Welcome to Rock Paper Scissors!\nYou're playing against the computer.")
-    
-    //for (let i = 0; i < 5; ++i) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    //}
+    scoreboardText.textContent = "Human 0 | Computer 0";
+    scoreboardText.hidden = false;
 
-    let message = "Human " + humanScore + " | Computer " + computerScore + "\n";
-    // if (humanScore === computerScore) {
-    //     message += "It's a DRAW! GGWP!"
-    // }
-    // else if (humanScore > computerScore) {
-    //     message += "You WIN!!! AI CAN NEVER REPLACE HUMANITY!!!";
-    // }
-    // else {
-    //     message += "You LOST! Skill issue?";
-    // }
-
-    alert(message);
+    choiceButtons.hidden = false;
+    startButton.hidden = true;
+    startButton.textContent = "RESTART";
+    messageText.textContent = "";
 }
 
 let choiceButtons = document.querySelector('#choice-buttons');
@@ -113,4 +103,6 @@ choiceButtons.addEventListener('click', (event) => {
             break;
     }
 });
+choiceButtons.hidden = true;
+scoreboardText.hidden = true;
 
