@@ -2,6 +2,7 @@
 const CHOICES = ["rock", "paper", "scissors"];
 let humanScore = 0;
 let computerScore = 0;
+let roundsPlayed = 0;
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -12,6 +13,26 @@ function getComputerChoice() {
 function getHumanChoice() {
     let humanChoice = prompt("Rock (1), Paper (2), or Scissors (3)? \nEnter the corresponding number: ");
     return CHOICES[humanChoice - 1];
+}
+
+function showEndResults() {
+    let message = "";
+    if (humanScore === computerScore) {
+        message = "It's a DRAW! GGWP!"
+    }
+    else if (humanScore > computerScore) {
+        message = "You WIN!!! AI CAN NEVER REPLACE HUMANITY!!!";
+    }
+    else {
+        message = "You LOST! Skill issue?";
+    }
+
+    const resultText = document.createElement("p");
+    resultText.setAttribute('id', 'result-text');
+    resultText.textContent = message;
+
+    const resultDiv = document.querySelector("#results");
+    resultDiv.appendChild(resultText);
 }
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
@@ -42,10 +63,15 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
 
     const scoreBoard = document.querySelector("#scoreboard");
     scoreBoard.textContent = message;
+
+    if (++roundsPlayed == 5) {
+        showEndResults();
+        //showRestartButton();
+    }
 }
 
 function playGame() {
-    humanScore = computerScore = 0;
+    humanScore = computerScore = roundsPlayed = 0;
     alert("Welcome to Rock Paper Scissors!\nYou're playing against the computer.")
     
     //for (let i = 0; i < 5; ++i) {
@@ -55,20 +81,18 @@ function playGame() {
     //}
 
     let message = "Human " + humanScore + " | Computer " + computerScore + "\n";
-    if (humanScore === computerScore) {
-        message += "It's a DRAW! GGWP!"
-    }
-    else if (humanScore > computerScore) {
-        message += "You WIN!!! AI CAN NEVER REPLACE HUMANITY!!!";
-    }
-    else {
-        message += "You LOST! Skill issue?";
-    }
+    // if (humanScore === computerScore) {
+    //     message += "It's a DRAW! GGWP!"
+    // }
+    // else if (humanScore > computerScore) {
+    //     message += "You WIN!!! AI CAN NEVER REPLACE HUMANITY!!!";
+    // }
+    // else {
+    //     message += "You LOST! Skill issue?";
+    // }
 
     alert(message);
 }
-
-//playGame();
 
 let choiceButtons = document.querySelector('#choice-buttons');
 choiceButtons.addEventListener('click', (event) => {
@@ -89,3 +113,4 @@ choiceButtons.addEventListener('click', (event) => {
             break;
     }
 });
+
