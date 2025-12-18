@@ -98,7 +98,7 @@ button:disabled {
 }
 
 .green-box {
-    color: green;
-    border: 5px solid green;
-    opacity: 1;
+    color: rgb(0, 255, 0) !important;
+    border: 5px solid rgb(0, 255, 0) !important;
+    opacity: 1 !important;
 }

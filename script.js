@@ -97,6 +97,7 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
         roundsPlayed++;
         messageText.textContent = "ROUND " + roundsPlayed;
         disableChoiceButtons(false);
+        resetChoiceButtonsState();
 
         if (roundsPlayed > 5) {
             showEndResults();
@@ -117,6 +118,12 @@ function changeButtonToGreen(element) {
     element.classList.add("green-box");
 }
 
+function resetChoiceButtonsState() {
+    for (let choiceButton of choiceButtons.children) {
+        choiceButton.classList.remove("green-box");
+    }
+}
+
 let choiceButtons = document.querySelector('#choice-buttons');
 choiceButtons.addEventListener('click', (event) => {
     let target = event.target;
@@ -125,17 +132,17 @@ choiceButtons.addEventListener('click', (event) => {
         case 'rock':
             //console.log("ROCK!");
             playRound(CHOICES[0]);
-            changeButtonToGreen(target.element);
+            changeButtonToGreen(target);
             break;
         case 'paper':
             //console.log("PAPER!");
             playRound(CHOICES[1]);
-            changeButtonToGreen(target.element);
+            changeButtonToGreen(target);
             break;
         case 'scissors':
             //console.log("SCISSORS!");
             playRound(CHOICES[2]);
-            changeButtonToGreen(target.element);
+            changeButtonToGreen(target);
             break;
     }
 });
