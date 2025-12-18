@@ -1,3 +1,89 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     background-color: #282828;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+h1 {
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 80px;
+    margin: 0;
+}
+
+p, button {
+    font-family: "Jersey 25", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+body > * {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#start {
+    border: 5px solid white;
+    background-color: transparent;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+
+#choice-buttons, #message-container, #computer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scoreboard {
+    margin-bottom: 10px;
+}
+
+#message-container {
+    flex-direction: column;
+    padding: 50px 0;
+    gap: 20px;
+}
+
+#choice-buttons {
+    gap: 50px;
+}
+
+#choice-buttons button, #computer-box {
+    margin: 0;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: transparent;
+    border: 5px solid white;
+    border-radius: 20px;
+    color: white;
+    font-size: 84px;
+}
+
+#message {
+    font-size: 60px;
+}
+
+button:disabled {
+    border: #4d4d4d;
+    color: #4d4d4d;
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
 }

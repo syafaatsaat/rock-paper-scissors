@@ -11,6 +11,7 @@ startButton.addEventListener('click', (event) => {
 
 const scoreboardText = document.querySelector("#scoreboard");
 const messageText = document.querySelector("#message");
+const computerBox = document.querySelector("#computer-box");
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -36,52 +37,66 @@ function showEndResults() {
     }
 
     messageText.textContent = message;
-    choiceButtons.hidden = true;
-    startButton.hidden = false;
+    hideGameElements(true);
 }
 
 function playRound(humanChoice, computerChoice = getComputerChoice()) {
     // rock beats scissors
     // scissors beats paper
     // paper beats rock
+    let roundState = "DRAW";
 
     if (humanChoice == "rock" && computerChoice == "scissors") {
         humanScore++;
+        roundState = "HUMAN WINS";
     }
     else if (humanChoice == "scissors" && computerChoice == "paper") {
         humanScore++;
+        roundState = "HUMAN WINS";
     }
     else if (humanChoice == "paper" && computerChoice == "rock") {
         humanScore++;
+        roundState = "HUMAN WINS";
     }
     if (computerChoice == "rock" && humanChoice == "scissors") {
         computerScore++;
+        roundState = "COMPUTER WINS";
     }
     else if (computerChoice == "scissors" && humanChoice == "paper") {
         computerScore++;
+        roundState = "COMPUTER WINS";
     }
     else if (computerChoice == "paper" && humanChoice == "rock") {
         computerScore++;
+        roundState = "COMPUTER WINS";
     }
 
     let message = "Human " + humanScore + " | Computer " + computerScore;
 
     scoreboardText.textContent = message;
+
+    disableChoiceButtons(true);
+
+    messageText.textContent = "ROUND " + roundsPlayed + " - " + roundState;
     
-    if (++roundsPlayed == 5) {
-        showEndResults();
-    }
+    setTimeout(() => {
+        roundsPlayed++;
+        messageText.textContent = "ROUND " + roundsPlayed;
+        disableChoiceButtons(false);
+
+        if (roundsPlayed > 5) {
+            showEndResults();
+        }
+    }, 5000);
 }
 
 function startGame() {
-    humanScore = computerScore = roundsPlayed = 0;
+    humanScore = computerScore = 0;
+    roundsPlayed = 1;
     scoreboardText.textContent = "Human 0 | Computer 0";
-    scoreboardText.hidden = false;
-
-    choiceButtons.hidden = false;
-    startButton.hidden = true;
     startButton.textContent = "RESTART";
-    messageText.textContent = "";
+    messageText.textContent = "ROUND " + roundsPlayed;
+    hideGameElements(false);
 }
 
 let choiceButtons = document.querySelector('#choice-buttons');
@@ -103,6 +118,28 @@ choiceButtons.addEventListener('click', (event) => {
             break;
     }
 });
-choiceButtons.hidden = true;
-scoreboardText.hidden = true;
 
+function disableChoiceButtons(disable) {
+    for (let choiceButton of choiceButtons.children) {
+        choiceButton.disabled = disable;
+    }
+}
+
+function hideGameElements(hidden) {
+    for (let choiceButton of choiceButtons.children) {
+        choiceButton.hidden = hidden;
+    }
+    scoreboardText.hidden = hidden;
+    scoreboardText.hidden = hidden;
+    
+    startButton.hidden = !hidden;
+
+    if (hidden) {
+        computerBox.setAttribute("style", "display: none;");
+    }
+    else {
+        computerBox.setAttribute("style", "display: flex;");
+    }
+}
+
+hideGameElements(true);
