@@ -74,13 +74,16 @@ choiceButtons.addEventListener('click', (event) => {
 
     switch(target.id) {
         case 'rock':
-            console.log("ROCK!");
+            //console.log("ROCK!");
+            playRound(CHOICES[0], getComputerChoice());
             break;
         case 'paper':
-            console.log("PAPER!");
+            //console.log("PAPER!");
+            playRound(CHOICES[1], getComputerChoice());
             break;
         case 'scissors':
-            console.log("SCISSORS!");
+            //console.log("SCISSORS!");
+            playRound(CHOICES[2], getComputerChoice());
             break;
     }
 });
