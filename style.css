@@ -20,6 +20,7 @@ h1 {
     font-style: normal;
     font-size: 80px;
     margin: 0;
+    text-align: center;
 }
 
 p, button {

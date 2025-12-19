@@ -96,7 +96,7 @@ function playRound(humanChoice, computerChoice = getComputerChoice()) {
     setTimeout(() => {
         roundsPlayed++;
         messageText.textContent = "ROUND " + roundsPlayed;
-        computerBox.textContent = "?";
+        computerBox.textContent = "🤖";
         disableChoiceButtons(false);
         resetChoiceButtonsState();
 
